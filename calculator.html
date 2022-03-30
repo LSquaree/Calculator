@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body{
+            min-height: 100vh;
+            background-color: rgb(53, 53, 53);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin:0;
+        }
+        .container{
+            width:400px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 1px 1px 10px gray;
+            /* border: 1px solid gray; */
+            /* background-color: lightblue; */
+        }
+        .display{
+            height: 100px;
+            background-color:black;
+            color:whitesmoke;
+            font-size: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding-right: 20px;
+            padding-bottom: 10px;
+        }
+        .calculate{
+            background-color:whitesmoke;
+            display: grid;
+            grid-template-columns: repeat(4,100px);
+            grid-template-rows: repeat(4,100px);
+            /* border: 1px solid black; */
+
+        }
+        .calbutton{
+            border: 1px solid black;
+            font-size: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: lightblue; */
+        }
+        .calbutton:hover{
+            background-color: rgb(53, 53, 53);
+            opacity: 0.7;
+            color:whitesmoke;
+        }
+        @media screen and (max-width:800px) {
+            .calbutton{
+                font-size: 1.5rem;
+            }
+            .display{
+                height:80px;
+                font-size: 1.5rem;
+            }
+        }
+        @media screen and (max-width:450px) {
+            .container{
+                width:280px;
+            }
+            .calculate{
+                background-color:whitesmoke;
+                display: grid;
+                grid-template-columns: repeat(4,70px);
+                grid-template-rows: repeat(4,70px);
+            }
+            .calbutton{
+                font-size: 1rem;
+            }
+            .display{
+                height: 50px;
+                font-size: 1rem;
+            }
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="display"></div>
+        <div class="calculate">
+            <div class="calbutton numbutton">1</div>
+            <div class="calbutton numbutton">2</div>
+            <div class="calbutton numbutton">3</div>
+            <div class="calbutton operatorbutton">+</div>
+            <div class="calbutton numbutton">4</div>
+            <div class="calbutton numbutton">5</div>
+            <div class="calbutton numbutton">6</div>
+            <div class="calbutton operatorbutton">-</div>
+            <div class="calbutton numbutton">7</div>
+            <div class="calbutton numbutton">8</div>
+            <div class="calbutton numbutton">9</div>
+            <div class="calbutton operatorbutton">*</div>
+            <div class="calbutton" id="clearbutton">C</div>
+            <div class="calbutton numbutton">0</div>
+            <div class="calbutton" id="equalbutton">=</div>
+            <div class="calbutton operatorbutton">/</div>
+        </div>
+    </div>
+    <script src="calculator.js"></script>
+</body>
+</html>

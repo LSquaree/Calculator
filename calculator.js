@@ -12,12 +12,14 @@
 // var subtractbutton=document.getElementById('subtrackbutton');
 // var multiplybutton=document.getElementById('multiplybutton');
 // var dividebutton=document.getElementById('dividebutton');
-
+var deletebutton=document.querySelector('.deletebutton');
+// var dotbutton=document.querySelector('.dotbutton');
 var equalbutton=document.getElementById('equalbutton');
 var clearbutton=document.getElementById('clearbutton');
 var display=document.getElementsByClassName('display')[0];
 var numberbutton=document.querySelectorAll('.numbutton');
-var operatorbutton=document.querySelectorAll('.operatorbutton')
+var operatorbutton=document.querySelectorAll('.operatorbutton');
+
 var displaystring="";
 
 numberbutton.forEach(function(numbutton){
@@ -31,9 +33,36 @@ operatorbutton.forEach(function(operbutton){
     operbutton.addEventListener('click',function(){
         displaystring+=operbutton.innerHTML;
         display.innerHTML=displaystring;
+        // if(displaystring.includes(operbutton.innerHTML)){
+        //     displaystring=displaystring.toString();
+        //     display.innerHTML=displaystring;
+        //     console.log("display ",displaystring)
+        // }
+        // else{
+        //     displaystring+=operbutton.innerHTML;
+        //     display.innerHTML=displaystring;
+        //     console.log("display ",displaystring)
+
+        // }
     })
 })
 
+// dotbutton.addEventListener('click',function(){
+//     console.log('dot is clicked')
+// })
+deletebutton.addEventListener('click',function(){
+    // console.log("delete is clicked")
+    // var last=displaystring.length-1;
+    // displaystring=display.innerHTML;
+    // slicing=displaystring.slice(0,displaystring.length-1);
+    // console.log(slicing)
+    // display.innerHTML=slicing;
+    displaystring=display.innerHTML;
+    displaystring=displaystring.slice(0,-1);
+    // console.log(newstring);
+    console.log(displaystring)
+    display.innerHTML=displaystring;
+})
 
 clearbutton.addEventListener('click',function(){
     console.log('clear button is clicked');
@@ -53,41 +82,114 @@ equalbutton.addEventListener('click',function(){
     //     var index=displaylist.indexOf();
         
     // }
-    if(displaystring.includes('+')){
-        console.log("It has plus operator");
-        var index=displaystring.indexOf('+');
+    // calculate(operbutton.innerHTML);
+    // console.log(operbutton.innerHTML)
+    function calculate(operator){
+        console.log("It has "+operator+" operator");
+        var result;
+        var index;
+        // var count=0;
+        // for(let i=0;i<displaystring.length;i++){
+        //     if(operator==displaystring[i]){
+        //         count+=1;
+        //     }
+        // }
+        if(operator=='-'){
+            index=displaystring.lastIndexOf(operator);
+        }
+        else{
+            index=displaystring.indexOf(operator);
+
+        }
+            // index=displaystring.indexOf(operator);
+        // if(index!=0){}
         numberone=displaystring.slice(0,index);
         numbertwo=displaystring.slice(index+1,displaystring.length);
-        var addresult=add(numberone,numbertwo);
-        display.innerHTML=addresult;
-        displaystring=addresult;
+        switch(operator){
+            case "+":
+                result=add(numberone,numbertwo);
+                break;
+            case "-":
+                result=subtract(numberone,numbertwo);
+                break;
+            case "*":
+                result=multiply(numberone,numbertwo);
+                break;
+            case "/":
+                result=division(numberone,numbertwo);
+                break;
+
+        }
+        display.innerHTML=result;
+        displaystring=result;
+    }
+
+    if(displaystring.includes('+')){
+        if(displaystring.includes('*')){
+            calculate('*');
+        }
+        else if(displaystring.includes('/')){
+            calculate('/');
+        }
+        // else if(displaystring.includes('-')){
+        //     calculate('-');
+        // }
+        else{
+            calculate("+");
+        }
+        // calculate("+");
+        // console.log("It has plus operator");
+        // var index=displaystring.indexOf('+');
+        // numberone=displaystring.slice(0,index);
+        // numbertwo=displaystring.slice(index+1,displaystring.length);
+        // var addresult=add(numberone,numbertwo);
+        // display.innerHTML=addresult;
+        // displaystring=addresult;
     }
     else if(displaystring.includes('-')){
-        console.log("It has minus operator");
-        var index=displaystring.indexOf('-');
-        numberone=displaystring.slice(0,index);
-        numbertwo=displaystring.slice(index+1,displaystring.length);
-        var subtractresult=subtract(numberone,numbertwo);
-        display.innerHTML=subtractresult;
-        displaystring=subtractresult;
+        if(displaystring.includes('*')){
+            calculate('*');
+        }
+        else if(displaystring.includes('/')){
+            calculate('/')
+        }
+        else{
+            // var lastindexof=displaystring.lastIndexOf("-");
+            // console.log(lastindexof);
+            // console.log(displaystring[lastindexof])
+            // var lastminusoperator=displaystring[lastindexof];
+            calculate('-');
+        }
+        // console.log("It has minus operator");
+        // var index=displaystring.indexOf('-');
+        // numberone=displaystring.slice(0,index);
+        // numbertwo=displaystring.slice(index+1,displaystring.length);
+        // var subtractresult=subtract(numberone,numbertwo);
+        // display.innerHTML=subtractresult;
+        // displaystring=subtractresult;
     }
     else if(displaystring.includes('*')){
-        console.log("It has multiply operator");
-        var index=displaystring.indexOf('*');
-        numberone=displaystring.slice(0,index);
-        numbertwo=displaystring.slice(index+1,displaystring.length);
-        var multiplyresult=multiply(numberone,numbertwo);
-        display.innerHTML=multiplyresult;
-        displaystring=multiplyresult;
+        calculate("*");
+        // console.log("It has multiply operator");
+        // var index=displaystring.indexOf('*');
+        // numberone=displaystring.slice(0,index);
+        // numbertwo=displaystring.slice(index+1,displaystring.length);
+        // var multiplyresult=multiply(numberone,numbertwo);
+        // display.innerHTML=multiplyresult;
+        // displaystring=multiplyresult;
     }
     else if(displaystring.includes('/')){
-        console.log("It has divide operator");
-        var index=displaystring.indexOf('/');
-        numberone=displaystring.slice(0,index);
-        numbertwo=displaystring.slice(index+1,displaystring.length);
-        var divideresult=division(numberone,numbertwo);
-        display.innerHTML=divideresult;
-        displaystring=divideresult;
+        calculate("/")
+        // console.log("It has divide operator");
+        // var index=displaystring.indexOf('/');
+        // numberone=displaystring.slice(0,index);
+        // numbertwo=displaystring.slice(index+1,displaystring.length);
+        // var divideresult=division(numberone,numbertwo);
+        // display.innerHTML=divideresult;
+        // displaystring=divideresult;
+    }
+    else{
+        console.log("There is not operator")
     }
 })
 

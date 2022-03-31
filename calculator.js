@@ -12,6 +12,7 @@
 // var subtractbutton=document.getElementById('subtrackbutton');
 // var multiplybutton=document.getElementById('multiplybutton');
 // var dividebutton=document.getElementById('dividebutton');
+var audio=new Audio('https://assets.mixkit.co/sfx/download/mixkit-quick-win-video-game-notification-269.wav')
 var deletebutton=document.querySelector('.deletebutton');
 // var dotbutton=document.querySelector('.dotbutton');
 var equalbutton=document.getElementById('equalbutton');
@@ -24,15 +25,19 @@ var displaystring="";
 
 numberbutton.forEach(function(numbutton){
     numbutton.addEventListener('click',function(){
+        audio.play();
         displaystring+=numbutton.innerHTML;
         display.innerHTML=displaystring;
+        
     })
 })
 
 operatorbutton.forEach(function(operbutton){
     operbutton.addEventListener('click',function(){
+        audio.play();
         displaystring+=operbutton.innerHTML;
         display.innerHTML=displaystring;
+        
         // if(displaystring.includes(operbutton.innerHTML)){
         //     displaystring=displaystring.toString();
         //     display.innerHTML=displaystring;
@@ -62,15 +67,18 @@ deletebutton.addEventListener('click',function(){
     // console.log(newstring);
     console.log(displaystring)
     display.innerHTML=displaystring;
+    audio.play();
 })
 
 clearbutton.addEventListener('click',function(){
     console.log('clear button is clicked');
     display.innerHTML="";
     displaystring="";
+    audio.play();
 })
 
 equalbutton.addEventListener('click',function(){
+    audio.play();
     // console.log('equal button is clicked');
     display.innerHTML=displaystring;
     // console.log(displaystring);
